@@ -52,6 +52,12 @@ class OrderDetailsVC: UIViewController {
         totalPara.text = total
         adresLabel.text = adres
         noteLabel.text = note
+        
+        navigationItem.setHidesBackButton(false, animated: false)
+        siparisYoldaBtn.isEnabled = false
+        siparisTeslimBtn.isEnabled = false
+        siparisIptalBtn.isEnabled = false
+        
     }
     //MARK: - Getting the name of the person who gived order from firestore.
     func getName(){
@@ -108,6 +114,9 @@ class OrderDetailsVC: UIViewController {
   
     //MARK: - Buttons with actions for db manuplating.
     @IBAction func siparisKabulBtnPressed(_ sender: UIButton) {
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        siparisYoldaBtn.isEnabled = true
+        
         db.collection("Siparisler").whereField("user", isEqualTo: user).whereField("siparisId", isEqualTo: siparisID).getDocuments { (snapshot, error) in
             if let e = error {
                 print(e.localizedDescription)
@@ -120,10 +129,12 @@ class OrderDetailsVC: UIViewController {
                 ])
             }
         }
-        
+        siparisKabulBtn.isEnabled = false
         
     }
     @IBAction func siparisYoldaBtnPressed(_ sender: UIButton) {
+        siparisTeslimBtn.isEnabled = true
+        
         db.collection("Siparisler").whereField("user", isEqualTo: user).whereField("siparisId", isEqualTo: siparisID).getDocuments { (snapshot, error) in
             if let e = error {
                 print(e.localizedDescription)
@@ -137,10 +148,11 @@ class OrderDetailsVC: UIViewController {
             }
         }
         
-        
+        siparisYoldaBtn.isEnabled = false
         
     }
     @IBAction func siparisTeslimBtnPressed(_ sender: UIButton) {
+        siparisIptalBtn.isEnabled = true
         db.collection("Siparisler").whereField("user", isEqualTo: user).whereField("siparisId", isEqualTo: siparisID).getDocuments { (snapshot, error) in
             if let e = error {
                 print(e.localizedDescription)
@@ -153,6 +165,7 @@ class OrderDetailsVC: UIViewController {
                 ])
             }
         }
+        siparisTeslimBtn.isEnabled = false
     }
     @IBAction func siparisIptalBtnPressed(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
