@@ -12,6 +12,7 @@ class AllOrdersVC: UIViewController {
     let db = Firestore.firestore()
     var fetchedGivenOrders = [GivenOrderFromFirestore]()
     
+    @IBOutlet weak var logOutBarItem: UIBarButtonItem!
     @IBOutlet weak var rightItem: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,6 +35,18 @@ class AllOrdersVC: UIViewController {
     }
     @IBAction func rightItemPressed(_ sender: UIBarButtonItem) {
         givenOrdesDB()
+    }
+    @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
+        do{
+            try Auth.auth().signOut()
+            self.navigationController?.popToRootViewController(animated: true)
+            print("Log out")
+            
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            
+        }catch let signOutError as NSError{
+            print("Error signing out: %@", signOutError)
+        }
     }
     
     //MARK: - fetching given orders data from firestore(condition: status = Hazırlanıyor)

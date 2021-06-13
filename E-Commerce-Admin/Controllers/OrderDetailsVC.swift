@@ -17,6 +17,7 @@ class OrderDetailsVC: UIViewController {
     var payment = ""
     var note = ""
     var siparisID = 0
+    var admin = ""
     
     var fetchedOrdersDetailsData = [GivenOrderDetailsFromFirestore]()
     
@@ -116,19 +117,27 @@ class OrderDetailsVC: UIViewController {
     @IBAction func siparisKabulBtnPressed(_ sender: UIButton) {
         self.navigationItem.setHidesBackButton(true, animated: true)
         siparisYoldaBtn.isEnabled = true
-        
-        db.collection("Siparisler").whereField("user", isEqualTo: user).whereField("siparisId", isEqualTo: siparisID).getDocuments { (snapshot, error) in
-            if let e = error {
-                print(e.localizedDescription)
-            }else {
-                guard let snap = snapshot else {return}
-                
-                let document = snap.documents.first
-                document?.reference.updateData([
-                    "status": "Hazırlanıyor"
-                ])
+        let anonFunc = {(fetchedName: String) in
+            self.admin = fetchedName
+            self.db.collection("Siparisler").whereField("user", isEqualTo: self.user).whereField("siparisId", isEqualTo: self.siparisID).getDocuments { (snapshot, error) in
+                if let e = error {
+                    print(e.localizedDescription)
+                }else {
+                    guard let snap = snapshot else {return}
+                    
+                    let document = snap.documents.first
+                    document?.reference.updateData([
+                        "status": "Hazırlanıyor",
+                        "kurye": self.admin
+                    ])
+                }
             }
         }
+        getKuryeName(onCompletion: anonFunc)
+        
+        
+        
+        
         siparisKabulBtn.isEnabled = false
         
     }
@@ -228,7 +237,32 @@ class OrderDetailsVC: UIViewController {
 //
         
     }
+    
+    func getKuryeName(onCompletion: @escaping (String) -> ()){
+        if let user = Auth.auth().currentUser?.email{
+            db.collection("Adminler").document("Kişiler").collection(user).getDocuments { (snapshot, error) in
+                if let e = error {
+                    print(e.localizedDescription)
+                }else {
+                    guard let snap = snapshot else {return}
+                    for document in snap.documents{
+                        let data = document.data()
+                        let adminName = data["name"] as! String
+                        print(adminName)
+                        self.admin = adminName
+                    }
+                }
+                onCompletion(self.admin)
+            }
+            
+        }
+        
+    }
+    func fetchedKuryeName(){
+        
+    }
 }
+
 
     //MARK: - Tableview handling with all fetched data for the given order.
 extension OrderDetailsVC: UITableViewDataSource{

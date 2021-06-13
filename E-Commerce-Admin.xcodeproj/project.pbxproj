@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0801CAD42671103C00D9EABF /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0801CAD32671103C00D9EABF /* SignUpVC.swift */; };
+		0801CAD8267119CE00D9EABF /* FirstScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0801CAD7267119CE00D9EABF /* FirstScreenVC.swift */; };
+		0801CADB267119E400D9EABF /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0801CADA267119E400D9EABF /* SignInVC.swift */; };
 		086A1A9F26590AFB00D6711C /* GivenOrderFromFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A1A9E26590AFB00D6711C /* GivenOrderFromFirestore.swift */; };
 		086A1AAA26590C3C00D6711C /* AdresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A1AA826590C3C00D6711C /* AdresCell.swift */; };
 		086A1AAB26590C3C00D6711C /* AdresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086A1AA926590C3C00D6711C /* AdresCell.xib */; };
@@ -25,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0801CAD32671103C00D9EABF /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		0801CAD7267119CE00D9EABF /* FirstScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenVC.swift; sourceTree = "<group>"; };
+		0801CADA267119E400D9EABF /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		086A1A9E26590AFB00D6711C /* GivenOrderFromFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GivenOrderFromFirestore.swift; sourceTree = "<group>"; };
 		086A1AA826590C3C00D6711C /* AdresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdresCell.swift; sourceTree = "<group>"; };
 		086A1AA926590C3C00D6711C /* AdresCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdresCell.xib; sourceTree = "<group>"; };
@@ -95,6 +101,9 @@
 		08B0F6EE265BA655004534DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0801CAD7267119CE00D9EABF /* FirstScreenVC.swift */,
+				0801CADA267119E400D9EABF /* SignInVC.swift */,
+				0801CAD32671103C00D9EABF /* SignUpVC.swift */,
 				08B006E12658F6B600F99002 /* AllOrdersVC.swift */,
 				086A1AB226591C4300D6711C /* OrderDetailsVC.swift */,
 			);
@@ -256,12 +265,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0801CADB267119E400D9EABF /* SignInVC.swift in Sources */,
+				0801CAD42671103C00D9EABF /* SignUpVC.swift in Sources */,
 				086A1A9F26590AFB00D6711C /* GivenOrderFromFirestore.swift in Sources */,
 				086A1ACA2659402800D6711C /* GivenOrderDetailsFromFirestore.swift in Sources */,
 				086A1ACE2659438100D6711C /* SepetUrunuCell.swift in Sources */,
 				086A1AB326591C4300D6711C /* OrderDetailsVC.swift in Sources */,
 				08B006E22658F6B600F99002 /* AllOrdersVC.swift in Sources */,
 				08B006DE2658F6B600F99002 /* AppDelegate.swift in Sources */,
+				0801CAD8267119CE00D9EABF /* FirstScreenVC.swift in Sources */,
 				08B006E02658F6B600F99002 /* SceneDelegate.swift in Sources */,
 				086A1AAA26590C3C00D6711C /* AdresCell.swift in Sources */,
 			);
